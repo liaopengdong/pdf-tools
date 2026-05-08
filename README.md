@@ -1,6 +1,6 @@
 # BayMaxHome PDF
 
-Static browser-based PDF tools designed to work on a GitHub Pages project URL without a custom domain.
+Static browser-based PDF tools for `https://liaopengdong.github.io/pdf-tools/`.
 
 Implemented client-side tools:
 
@@ -22,4 +22,4 @@ Implemented client-side tools:
 
 Format conversions such as PDF to Word, Word to PDF, PDF to Excel, and OCR PDF are intentionally not exposed in the static site because reliable conversion usually requires a backend pipeline.
 
-Before submitting to Google Search Console, create a `sitemap.xml` with the final GitHub Pages URL, such as `https://username.github.io/repository-name/`.
+The sitemap is configured for the GitHub Pages project URL.
