@@ -378,10 +378,63 @@ h2 {
   flex-wrap: wrap;
 }
 
+.tool-content {
+  width: min(calc(100% - 28px), var(--content));
+  margin: 26px auto 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.8fr);
+  gap: 18px;
+}
+
+.content-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.content-panel h2,
+.content-panel h3 {
+  margin-top: 0;
+}
+
+.content-panel p,
+.content-panel li {
+  color: var(--muted);
+}
+
+.content-panel ul {
+  padding-left: 20px;
+}
+
+.related-list {
+  display: grid;
+  gap: 10px;
+}
+
+.related-list a {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text);
+  font-weight: 750;
+}
+
+.related-list a:hover {
+  border-color: #a7d7d2;
+  color: var(--primary-dark);
+}
+
 @media (max-width: 900px) {
   .workspace,
   .catalog-grid,
-  .options-grid {
+  .options-grid,
+  .tool-content {
     grid-template-columns: 1fr;
   }
 

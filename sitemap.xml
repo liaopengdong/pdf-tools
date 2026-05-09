@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://liaopengdong.github.io/pdf-tools/</loc></url>
+  <url><loc>https://liaopengdong.github.io/pdf-tools/merge-pdf/</loc></url>
+  <url><loc>https://liaopengdong.github.io/pdf-tools/split-pdf/</loc></url>
+  <url><loc>https://liaopengdong.github.io/pdf-tools/pdf-to-jpg/</loc></url>
+  <url><loc>https://liaopengdong.github.io/pdf-tools/jpg-to-pdf/</loc></url>
+  <url><loc>https://liaopengdong.github.io/pdf-tools/rotate-pdf/</loc></url>
+  <url><loc>https://liaopengdong.github.io/pdf-tools/watermark-pdf/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/privacy-policy/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/terms/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/contact/</loc></url>

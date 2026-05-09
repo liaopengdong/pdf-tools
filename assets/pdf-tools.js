@@ -505,5 +505,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   dropZone.addEventListener("drop", (event) => setFiles(event.dataTransfer.files));
 
+  activeTool = document.body.dataset.defaultTool || activeTool;
   configureTool(activeTool);
 });
