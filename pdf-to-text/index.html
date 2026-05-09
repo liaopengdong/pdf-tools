@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF to Text Converter | Extract Text from PDF</title>
+  <meta name="description" content="Extract selectable text from a PDF and download it as a plain text file.">
+  <link rel="canonical" href="https://liaopengdong.github.io/pdf-tools/pdf-to-text/">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script defer src="../assets/pdf-tools.js"></script>
+</head>
+<body data-default-tool="extract-text">
+  <header class="topbar"><a class="brand" href="../">BayMaxHome PDF</a><nav class="topnav"><a href="../">All tools</a><a href="../convert-pdf/">Convert</a><a href="../privacy-policy/">Privacy</a></nav></header>
+  <main>
+    <section class="workspace" id="workspace"><aside class="tool-rail" aria-label="PDF tools"><div class="rail-head"><span>Convert</span><strong>PDF to text</strong></div><button class="tool-tab active" type="button" data-tool="extract-text">PDF to text</button></aside><section class="tool-panel" aria-live="polite"><div class="panel-head"><div><p class="eyebrow" id="toolCategory">Convert</p><h1 id="toolTitle">PDF to text</h1><p class="lead" id="toolSummary">Extract selectable text from a PDF into a plain text file.</p></div><div class="privacy-chip">Local browser processing</div></div><div class="drop-zone" id="dropZone"><input id="fileInput" type="file" accept="application/pdf"><div><strong id="dropTitle">Choose a file</strong><span id="dropSubtitle">PDF files only</span></div></div><div class="file-list" id="fileList"></div><div class="options-grid"></div><div class="action-row"><button class="primary-action" id="runButton" type="button">Process PDF</button><button class="secondary-action" id="clearButton" type="button">Clear files</button></div><div class="status-line" id="statusLine">Ready.</div><div class="result-list" id="resultList"></div></section></section>
+    <section class="tool-content"><article class="content-panel"><h2>Extract text from a PDF</h2><p>This converter reads selectable PDF text and saves it as a plain text file. It works best with digital PDFs where text can already be selected in a PDF viewer.</p><h3>Important limitation</h3><p>This is not OCR. Scanned image-only PDFs may return little or no text unless they already contain a text layer.</p><h3>FAQ</h3><p><strong>Will formatting be preserved?</strong> No. The output is plain text.</p><p><strong>Can it read scanned PDFs?</strong> Only if the scanned PDF already includes selectable text.</p></article><aside class="content-panel"><h2>Related tools</h2><div class="related-list"><a href="../pdf-to-jpg/">PDF to JPG</a><a href="../jpg-to-pdf/">JPG to PDF</a><a href="../split-pdf/">Split PDF</a></div></aside></section>
+  </main>
+  <footer class="site-footer"><div>&copy; <span data-year></span> BayMaxHome PDF</div><nav><a href="../privacy-policy/">Privacy</a><a href="../terms/">Terms</a></nav></footer>
+</body>
+</html>

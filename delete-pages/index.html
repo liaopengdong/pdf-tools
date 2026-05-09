@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Pages from PDF | Remove PDF Pages Online</title>
+  <meta name="description" content="Remove selected pages from a PDF and download a new PDF with the remaining pages.">
+  <link rel="canonical" href="https://liaopengdong.github.io/pdf-tools/delete-pages/">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script defer src="../assets/pdf-tools.js"></script>
+</head>
+<body data-default-tool="delete">
+  <header class="topbar"><a class="brand" href="../">BayMaxHome PDF</a><nav class="topnav"><a href="../">All tools</a><a href="../organize-pdf/">Organize</a><a href="../privacy-policy/">Privacy</a></nav></header>
+  <main>
+    <section class="workspace" id="workspace"><aside class="tool-rail" aria-label="PDF tools"><div class="rail-head"><span>Organize</span><strong>Delete pages</strong></div><button class="tool-tab active" type="button" data-tool="delete">Delete pages</button></aside><section class="tool-panel" aria-live="polite"><div class="panel-head"><div><p class="eyebrow" id="toolCategory">Organize</p><h1 id="toolTitle">Delete pages</h1><p class="lead" id="toolSummary">Remove selected pages and export the remaining PDF.</p></div><div class="privacy-chip">Local browser processing</div></div><div class="drop-zone" id="dropZone"><input id="fileInput" type="file" accept="application/pdf"><div><strong id="dropTitle">Choose a file</strong><span id="dropSubtitle">PDF files only</span></div></div><div class="file-list" id="fileList"></div><div class="options-grid"><label class="option-field" data-option="range"><span>Pages to remove</span><input id="pageRange" type="text" value="" placeholder="Example: 2, 4-6"></label></div><div class="action-row"><button class="primary-action" id="runButton" type="button">Process PDF</button><button class="secondary-action" id="clearButton" type="button">Clear files</button></div><div class="status-line" id="statusLine">Ready.</div><div class="result-list" id="resultList"></div></section></section>
+    <section class="tool-content"><article class="content-panel"><h2>Remove unwanted PDF pages</h2><p>Delete blank pages, duplicate scans, cover sheets, or pages that should not be included in the final PDF. The original file is not modified.</p><h3>When to use it</h3><ul><li>Remove blank scanned pages.</li><li>Delete pages before sending a file to a client.</li><li>Create a cleaner version of a large document.</li></ul><h3>FAQ</h3><p><strong>Can I remove page ranges?</strong> Yes. Use values like 2, 4-6.</p><p><strong>What happens if I remove every page?</strong> The tool will stop and show an error instead of creating an empty PDF.</p></article><aside class="content-panel"><h2>Related tools</h2><div class="related-list"><a href="../extract-pages/">Extract pages</a><a href="../split-pdf/">Split PDF</a><a href="../rotate-pdf/">Rotate PDF</a></div></aside></section>
+  </main>
+  <footer class="site-footer"><div>&copy; <span data-year></span> BayMaxHome PDF</div><nav><a href="../privacy-policy/">Privacy</a><a href="../terms/">Terms</a></nav></footer>
+</body>
+</html>
