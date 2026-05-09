@@ -126,6 +126,8 @@ let selectedFiles = [];
 
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+const pdfToolsScript = document.currentScript || Array.from(document.scripts).find((script) => script.src.endsWith("/assets/pdf-tools.js"));
+const pdfToolsAssetBase = pdfToolsScript ? new URL(".", pdfToolsScript.src) : new URL("assets/", window.location.href);
 
 function setStatus(message, isError = false) {
   const node = $("#statusLine");
@@ -479,7 +481,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!$("#workspace")) return;
 
   if (window.pdfjsLib) {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    pdfjsLib.GlobalWorkerOptions.workerSrc = new URL("vendor/pdf.worker.min.js", pdfToolsAssetBase).toString();
   }
 
   $$(".tool-tab").forEach((button) => {
