@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Header and Footer to PDF Online</title>
+  <meta name="description" content="Add custom header and footer text to every PDF page in your browser.">
+  <link rel="canonical" href="https://liaopengdong.github.io/pdf-tools/add-header-footer/">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/vendor/pdf.min.js"></script>
+  <script src="../assets/vendor/pdf-lib.min.js"></script>
+  <script src="../assets/vendor/jszip.min.js"></script>
+  <script defer src="../assets/pdf-tools.js"></script>
+</head>
+<body data-default-tool="header-footer">
+  <header class="topbar"><a class="brand" href="../">BayMaxHome PDF</a><nav class="topnav"><a href="../">All tools</a><a href="../privacy-policy/">Privacy</a><a href="../contact/">Contact</a></nav></header>
+  <main>
+    <section class="workspace" id="workspace"><aside class="tool-rail" aria-label="PDF tools"><div class="rail-head"><span>Edit</span><strong>Header/footer</strong></div><button class="tool-tab active" type="button" data-tool="header-footer">Header and footer</button></aside><section class="tool-panel" aria-live="polite"><div class="panel-head"><div><p class="eyebrow" id="toolCategory">Edit</p><h1 id="toolTitle">Add header and footer</h1><p class="lead" id="toolSummary">Add custom header and footer text to every PDF page.</p></div><div class="privacy-chip">Local browser processing</div></div><div class="drop-zone" id="dropZone"><input id="fileInput" type="file" accept="application/pdf"><div><strong id="dropTitle">Choose a file</strong><span id="dropSubtitle">PDF files only</span></div></div><div class="file-list" id="fileList"></div><div class="options-grid"><label class="option-field" data-option="header-footer"><span>Header text</span><input id="headerText" type="text" value="Document"></label><label class="option-field" data-option="header-footer"><span>Footer text</span><input id="footerText" type="text" value="Page {page}"></label><label class="option-field" data-option="text-size"><span>Text size</span><input id="textSize" type="number" value="10" min="8" max="120"></label></div><div class="action-row"><button class="primary-action" id="runButton" type="button">Process PDF</button><button class="secondary-action" id="clearButton" type="button">Clear files</button></div><div class="status-line" id="statusLine">Ready.</div><div class="result-list" id="resultList"></div></section></section>
+    <section class="tool-content"><article class="content-panel"><h2>Add repeating page text</h2><p>Add a header, footer, or page marker to each page. Use {page} in footer text to insert the current page number.</p></article><aside class="content-panel"><h2>Related tools</h2><div class="related-list"><a href="../add-page-numbers/">Page numbers</a><a href="../add-text-to-pdf/">Add text</a><a href="../watermark-pdf/">Watermark PDF</a></div></aside></section>
+  </main>
+  <footer class="site-footer"><div>&copy; <span data-year></span> BayMaxHome PDF</div><nav><a href="../privacy-policy/">Privacy</a><a href="../terms/">Terms</a></nav></footer>
+</body>
+</html>

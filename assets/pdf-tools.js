@@ -15,6 +15,14 @@ const toolConfig = {
     multiple: false,
     options: [],
   },
+  "odd-even": {
+    category: "Organize",
+    title: "Split odd and even pages",
+    summary: "Save odd pages and even pages as separate PDF files inside a ZIP.",
+    accept: "application/pdf",
+    multiple: false,
+    options: [],
+  },
   extract: {
     category: "Organize",
     title: "Extract pages",
@@ -119,6 +127,14 @@ const toolConfig = {
     multiple: false,
     options: [],
   },
+  "pdf-info": {
+    category: "Inspect",
+    title: "PDF info",
+    summary: "Read PDF page count, page sizes, and common document metadata.",
+    accept: "application/pdf",
+    multiple: false,
+    options: [],
+  },
   watermark: {
     category: "Edit",
     title: "Add watermark",
@@ -126,6 +142,22 @@ const toolConfig = {
     accept: "application/pdf",
     multiple: false,
     options: ["watermark", "text-size"],
+  },
+  "text-stamp": {
+    category: "Edit",
+    title: "Add text to PDF",
+    summary: "Add custom text to each page in a selected position.",
+    accept: "application/pdf",
+    multiple: false,
+    options: ["stamp", "text-size"],
+  },
+  "header-footer": {
+    category: "Edit",
+    title: "Add header and footer",
+    summary: "Add custom header and footer text to every PDF page.",
+    accept: "application/pdf",
+    multiple: false,
+    options: ["header-footer", "text-size"],
   },
   "page-numbers": {
     category: "Edit",
@@ -142,6 +174,14 @@ const toolConfig = {
     accept: "application/pdf",
     multiple: false,
     options: ["metadata"],
+  },
+  "remove-metadata": {
+    category: "Edit",
+    title: "Remove metadata",
+    summary: "Clear common PDF metadata fields such as title, author, subject, and keywords.",
+    accept: "application/pdf",
+    multiple: false,
+    options: [],
   },
   flatten: {
     category: "Edit",
@@ -289,6 +329,26 @@ async function splitPdf(file) {
   }
   const blob = await zip.generateAsync({ type: "blob" });
   return [downloadItem(blob, safeName(file.name, "-split-pages.zip"))];
+}
+
+async function splitOddEven(file) {
+  const source = await loadPdf(file);
+  const zip = new JSZip();
+  const groups = [
+    { label: "odd-pages", pages: source.getPageIndices().filter((index) => index % 2 === 0) },
+    { label: "even-pages", pages: source.getPageIndices().filter((index) => index % 2 === 1) },
+  ];
+
+  for (const group of groups) {
+    if (!group.pages.length) continue;
+    const output = await PDFLib.PDFDocument.create();
+    const copied = await output.copyPages(source, group.pages);
+    copied.forEach((page) => output.addPage(page));
+    zip.file(`${group.label}.pdf`, await output.save({ useObjectStreams: true }));
+  }
+
+  const blob = await zip.generateAsync({ type: "blob" });
+  return [downloadItem(blob, safeName(file.name, "-odd-even-pages.zip"))];
 }
 
 async function extractPages(file) {
@@ -463,6 +523,35 @@ async function pageSizeReport(file) {
   return [downloadItem(blob, safeName(file.name, "-page-sizes.txt"))];
 }
 
+function formatDateValue(value) {
+  return value instanceof Date ? value.toISOString() : "";
+}
+
+async function pdfInfoReport(file) {
+  const doc = await loadPdf(file);
+  const lines = [
+    `File: ${file.name}`,
+    `File size: ${bytesLabel(file.size)}`,
+    `Pages: ${doc.getPageCount()}`,
+    `Title: ${doc.getTitle?.() || ""}`,
+    `Author: ${doc.getAuthor?.() || ""}`,
+    `Subject: ${doc.getSubject?.() || ""}`,
+    `Keywords: ${(doc.getKeywords?.() || []).join(", ")}`,
+    `Creator: ${doc.getCreator?.() || ""}`,
+    `Producer: ${doc.getProducer?.() || ""}`,
+    `Creation date: ${formatDateValue(doc.getCreationDate?.())}`,
+    `Modification date: ${formatDateValue(doc.getModificationDate?.())}`,
+    "",
+    "Page sizes:",
+  ];
+  doc.getPages().forEach((page, index) => {
+    const { width, height } = page.getSize();
+    lines.push(`Page ${index + 1}: ${width.toFixed(2)} x ${height.toFixed(2)} pt`);
+  });
+  const blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
+  return [downloadItem(blob, safeName(file.name, "-info.txt"))];
+}
+
 async function addWatermark(file) {
   const doc = await loadPdf(file);
   const font = await doc.embedFont(PDFLib.StandardFonts.HelveticaBold);
@@ -483,6 +572,65 @@ async function addWatermark(file) {
   });
 
   return [downloadItem(await savePdf(doc), safeName(file.name, "-watermarked.pdf"))];
+}
+
+function stampCoordinates(page, text, font, size, position) {
+  const { width, height } = page.getSize();
+  const textWidth = font.widthOfTextAtSize(text, size);
+  const margin = 36;
+  const map = {
+    "top-left": [margin, height - margin - size],
+    "top-right": [width - margin - textWidth, height - margin - size],
+    center: [(width - textWidth) / 2, (height - size) / 2],
+    "bottom-left": [margin, margin],
+    "bottom-right": [width - margin - textWidth, margin],
+  };
+  return map[position] || map.center;
+}
+
+async function addTextStamp(file) {
+  const doc = await loadPdf(file);
+  const font = await doc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+  const text = $("#stampText").value || "APPROVED";
+  const size = Number($("#textSize").value || 24);
+  const position = $("#stampPosition").value || "center";
+
+  doc.getPages().forEach((page) => {
+    const [x, y] = stampCoordinates(page, text, font, size, position);
+    page.drawText(text, {
+      x,
+      y,
+      size,
+      font,
+      color: PDFLib.rgb(0.12, 0.22, 0.38),
+      opacity: 0.9,
+    });
+  });
+
+  return [downloadItem(await savePdf(doc), safeName(file.name, "-text-added.pdf"))];
+}
+
+async function addHeaderFooter(file) {
+  const doc = await loadPdf(file);
+  const font = await doc.embedFont(PDFLib.StandardFonts.Helvetica);
+  const header = $("#headerText").value || "";
+  const footer = $("#footerText").value || "";
+  const size = Number($("#textSize").value || 10);
+
+  doc.getPages().forEach((page, index) => {
+    const { width, height } = page.getSize();
+    if (header) {
+      const headerText = header.replaceAll("{page}", String(index + 1));
+      page.drawText(headerText, { x: 36, y: height - 28, size, font, color: PDFLib.rgb(0.25, 0.29, 0.34) });
+    }
+    if (footer) {
+      const footerText = footer.replaceAll("{page}", String(index + 1));
+      const textWidth = font.widthOfTextAtSize(footerText, size);
+      page.drawText(footerText, { x: (width - textWidth) / 2, y: 20, size, font, color: PDFLib.rgb(0.25, 0.29, 0.34) });
+    }
+  });
+
+  return [downloadItem(await savePdf(doc), safeName(file.name, "-header-footer.pdf"))];
 }
 
 async function addPageNumbers(file) {
@@ -519,6 +667,18 @@ async function editMetadata(file) {
   return [downloadItem(await savePdf(doc), safeName(file.name, "-metadata.pdf"))];
 }
 
+async function removeMetadata(file) {
+  const doc = await loadPdf(file);
+  doc.setTitle("");
+  doc.setAuthor("");
+  doc.setSubject("");
+  doc.setKeywords([]);
+  doc.setCreator("");
+  doc.setProducer("");
+  doc.setModificationDate(new Date());
+  return [downloadItem(await savePdf(doc), safeName(file.name, "-metadata-removed.pdf"))];
+}
+
 async function flattenForms(file) {
   const doc = await loadPdf(file);
   try {
@@ -537,6 +697,7 @@ async function rewritePdf(file, suffix) {
 const runners = {
   merge: () => mergePdf(selectedFiles),
   split: () => splitPdf(selectedFiles[0]),
+  "odd-even": () => splitOddEven(selectedFiles[0]),
   extract: () => extractPages(selectedFiles[0]),
   delete: () => deletePages(selectedFiles[0]),
   rotate: () => rotatePdf(selectedFiles[0]),
@@ -550,9 +711,13 @@ const runners = {
   "extract-text": () => extractText(selectedFiles[0]),
   "page-count": () => pageCountReport(selectedFiles[0]),
   "page-size": () => pageSizeReport(selectedFiles[0]),
+  "pdf-info": () => pdfInfoReport(selectedFiles[0]),
   watermark: () => addWatermark(selectedFiles[0]),
+  "text-stamp": () => addTextStamp(selectedFiles[0]),
+  "header-footer": () => addHeaderFooter(selectedFiles[0]),
   "page-numbers": () => addPageNumbers(selectedFiles[0]),
   metadata: () => editMetadata(selectedFiles[0]),
+  "remove-metadata": () => removeMetadata(selectedFiles[0]),
   flatten: () => flattenForms(selectedFiles[0]),
   optimize: () => rewritePdf(selectedFiles[0], "-optimized.pdf"),
   repair: () => rewritePdf(selectedFiles[0], "-repaired.pdf"),

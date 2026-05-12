@@ -14,6 +14,7 @@ BayMaxHome PDF Tools is a static GitHub Pages website for merging, splitting, or
 | --- | --- |
 | [Merge PDF](https://liaopengdong.github.io/pdf-tools/merge-pdf/) | Combine multiple PDF files into one document. |
 | [Split PDF](https://liaopengdong.github.io/pdf-tools/split-pdf/) | Split a PDF into separate page files. |
+| [Split Odd and Even PDF](https://liaopengdong.github.io/pdf-tools/split-odd-even-pdf/) | Save odd pages and even pages into separate PDF files. |
 | [Extract Pages](https://liaopengdong.github.io/pdf-tools/extract-pages/) | Save selected pages from a PDF as a new file. |
 | [Delete Pages](https://liaopengdong.github.io/pdf-tools/delete-pages/) | Remove unwanted pages from a PDF. |
 | [Rotate PDF](https://liaopengdong.github.io/pdf-tools/rotate-pdf/) | Rotate PDF pages by 90, 180, or 270 degrees. |
@@ -32,14 +33,18 @@ BayMaxHome PDF Tools is a static GitHub Pages website for merging, splitting, or
 | [PDF to Text](https://liaopengdong.github.io/pdf-tools/pdf-to-text/) | Extract readable text from a PDF file when text data is available. |
 | [PDF Page Count](https://liaopengdong.github.io/pdf-tools/pdf-page-count/) | Count pages in a PDF and download a simple report. |
 | [PDF Page Size](https://liaopengdong.github.io/pdf-tools/pdf-page-size/) | Check page dimensions and download a simple report. |
+| [PDF Info](https://liaopengdong.github.io/pdf-tools/pdf-info/) | Read page count, page sizes, and common metadata fields. |
 
 ### Edit PDF
 
 | Tool | What it does |
 | --- | --- |
 | [Add Watermark](https://liaopengdong.github.io/pdf-tools/watermark-pdf/) | Add a text watermark to each PDF page. |
+| [Add Text to PDF](https://liaopengdong.github.io/pdf-tools/add-text-to-pdf/) | Stamp custom text on each PDF page. |
+| [Add Header and Footer](https://liaopengdong.github.io/pdf-tools/add-header-footer/) | Add repeating header and footer text to every page. |
 | [Add Page Numbers](https://liaopengdong.github.io/pdf-tools/add-page-numbers/) | Add page numbers to PDF pages. |
 | [Edit PDF Metadata](https://liaopengdong.github.io/pdf-tools/edit-pdf-metadata/) | Update title, author, subject, and keyword metadata. |
+| [Remove PDF Metadata](https://liaopengdong.github.io/pdf-tools/remove-pdf-metadata/) | Clear common metadata fields from a PDF. |
 | [Compress PDF](https://liaopengdong.github.io/pdf-tools/compress-pdf/) | Rewrite a PDF with object streams enabled; size reduction depends on the source file. |
 | [Flatten PDF](https://liaopengdong.github.io/pdf-tools/flatten-pdf/) | Flatten supported fillable form fields into page content. |
 | [Optimize PDF](https://liaopengdong.github.io/pdf-tools/optimize-pdf/) | Re-save a PDF with object streams enabled. |
@@ -77,6 +82,7 @@ Users should still avoid processing highly sensitive documents on any public web
 │   └── vendor/
 ├── merge-pdf/
 ├── split-pdf/
+├── split-odd-even-pdf/
 ├── pdf-to-jpg/
 ├── pdf-to-png/
 ├── jpg-to-pdf/
@@ -91,8 +97,12 @@ Users should still avoid processing highly sensitive documents on any public web
 ├── pdf-to-text/
 ├── pdf-page-count/
 ├── pdf-page-size/
+├── pdf-info/
+├── add-text-to-pdf/
+├── add-header-footer/
 ├── add-page-numbers/
 ├── edit-pdf-metadata/
+├── remove-pdf-metadata/
 ├── compress-pdf/
 ├── flatten-pdf/
 ├── optimize-pdf/

@@ -35,6 +35,7 @@
         <div class="tool-group-label">Organize</div>
         <button class="tool-tab active" type="button" data-tool="merge">Merge PDF</button>
         <button class="tool-tab" type="button" data-tool="split">Split PDF</button>
+        <button class="tool-tab" type="button" data-tool="odd-even">Split odd/even</button>
         <button class="tool-tab" type="button" data-tool="extract">Extract pages</button>
         <button class="tool-tab" type="button" data-tool="delete">Delete pages</button>
         <button class="tool-tab" type="button" data-tool="rotate">Rotate PDF</button>
@@ -50,11 +51,15 @@
         <button class="tool-tab" type="button" data-tool="extract-text">PDF to text</button>
         <button class="tool-tab" type="button" data-tool="page-count">PDF page count</button>
         <button class="tool-tab" type="button" data-tool="page-size">PDF page size</button>
+        <button class="tool-tab" type="button" data-tool="pdf-info">PDF info</button>
 
         <div class="tool-group-label">Edit</div>
         <button class="tool-tab" type="button" data-tool="watermark">Add watermark</button>
+        <button class="tool-tab" type="button" data-tool="text-stamp">Add text to PDF</button>
+        <button class="tool-tab" type="button" data-tool="header-footer">Header and footer</button>
         <button class="tool-tab" type="button" data-tool="page-numbers">Add page numbers</button>
         <button class="tool-tab" type="button" data-tool="metadata">Edit metadata</button>
+        <button class="tool-tab" type="button" data-tool="remove-metadata">Remove metadata</button>
         <button class="tool-tab" type="button" data-tool="flatten">Flatten forms</button>
         <button class="tool-tab" type="button" data-tool="optimize">Optimize PDF</button>
         <button class="tool-tab" type="button" data-tool="compress">Compress PDF</button>
@@ -97,6 +102,28 @@
           <label class="option-field" data-option="watermark">
             <span>Watermark text</span>
             <input id="watermarkText" type="text" value="CONFIDENTIAL">
+          </label>
+          <label class="option-field" data-option="stamp">
+            <span>Text to add</span>
+            <input id="stampText" type="text" value="APPROVED">
+          </label>
+          <label class="option-field" data-option="stamp">
+            <span>Text position</span>
+            <select id="stampPosition">
+              <option value="center">Center</option>
+              <option value="top-left">Top left</option>
+              <option value="top-right">Top right</option>
+              <option value="bottom-left">Bottom left</option>
+              <option value="bottom-right">Bottom right</option>
+            </select>
+          </label>
+          <label class="option-field" data-option="header-footer">
+            <span>Header text</span>
+            <input id="headerText" type="text" value="Document">
+          </label>
+          <label class="option-field" data-option="header-footer">
+            <span>Footer text</span>
+            <input id="footerText" type="text" value="Page {page}">
           </label>
           <label class="option-field" data-option="text-size">
             <span>Text size</span>
@@ -150,6 +177,7 @@
       <div class="catalog-grid">
         <a class="tool-card" href="merge-pdf/"><strong>Merge PDF</strong><span>Combine files in order</span></a>
         <a class="tool-card" href="split-pdf/"><strong>Split PDF</strong><span>Export pages as a ZIP</span></a>
+        <a class="tool-card" href="split-odd-even-pdf/"><strong>Split odd/even</strong><span>Separate odd and even pages</span></a>
         <a class="tool-card" href="extract-pages/"><strong>Extract pages</strong><span>Use ranges like 1-3, 7</span></a>
         <a class="tool-card" href="delete-pages/"><strong>Delete pages</strong><span>Remove selected ranges</span></a>
         <a class="tool-card" href="rotate-pdf/"><strong>Rotate PDF</strong><span>Rotate all or selected pages</span></a>
@@ -163,9 +191,13 @@
         <a class="tool-card" href="pdf-to-text/"><strong>PDF to text</strong><span>Extract selectable text</span></a>
         <a class="tool-card" href="pdf-page-count/"><strong>PDF page count</strong><span>Count pages in a PDF</span></a>
         <a class="tool-card" href="pdf-page-size/"><strong>PDF page size</strong><span>Check page dimensions</span></a>
+        <a class="tool-card" href="pdf-info/"><strong>PDF info</strong><span>Read metadata and page details</span></a>
         <a class="tool-card" href="watermark-pdf/"><strong>Watermark PDF</strong><span>Add diagonal text</span></a>
+        <a class="tool-card" href="add-text-to-pdf/"><strong>Add text to PDF</strong><span>Stamp custom text</span></a>
+        <a class="tool-card" href="add-header-footer/"><strong>Add header and footer</strong><span>Add repeating page text</span></a>
         <a class="tool-card" href="add-page-numbers/"><strong>Add page numbers</strong><span>Number every page</span></a>
         <a class="tool-card" href="edit-pdf-metadata/"><strong>Edit metadata</strong><span>Set title and author</span></a>
+        <a class="tool-card" href="remove-pdf-metadata/"><strong>Remove metadata</strong><span>Clear common metadata</span></a>
         <a class="tool-card" href="compress-pdf/"><strong>Compress PDF</strong><span>Rewrite and reduce eligible files</span></a>
         <a class="tool-card" href="flatten-pdf/"><strong>Flatten PDF forms</strong><span>Flatten fillable fields</span></a>
         <a class="tool-card" href="optimize-pdf/"><strong>Optimize PDF</strong><span>Rewrite PDF structure</span></a>

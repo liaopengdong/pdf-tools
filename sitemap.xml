@@ -3,6 +3,7 @@
   <url><loc>https://liaopengdong.github.io/pdf-tools/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/merge-pdf/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/split-pdf/</loc></url>
+  <url><loc>https://liaopengdong.github.io/pdf-tools/split-odd-even-pdf/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/pdf-to-jpg/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/pdf-to-png/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/jpg-to-pdf/</loc></url>
@@ -17,8 +18,12 @@
   <url><loc>https://liaopengdong.github.io/pdf-tools/pdf-to-text/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/pdf-page-count/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/pdf-page-size/</loc></url>
+  <url><loc>https://liaopengdong.github.io/pdf-tools/pdf-info/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/add-page-numbers/</loc></url>
+  <url><loc>https://liaopengdong.github.io/pdf-tools/add-text-to-pdf/</loc></url>
+  <url><loc>https://liaopengdong.github.io/pdf-tools/add-header-footer/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/edit-pdf-metadata/</loc></url>
+  <url><loc>https://liaopengdong.github.io/pdf-tools/remove-pdf-metadata/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/compress-pdf/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/flatten-pdf/</loc></url>
   <url><loc>https://liaopengdong.github.io/pdf-tools/optimize-pdf/</loc></url>
