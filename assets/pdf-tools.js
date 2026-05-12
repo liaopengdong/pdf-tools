@@ -55,11 +55,27 @@ const toolConfig = {
     multiple: false,
     options: ["jpeg-quality"],
   },
+  "pdf-to-png": {
+    category: "Convert",
+    title: "PDF to PNG",
+    summary: "Render PDF pages as PNG images and download them in a ZIP file.",
+    accept: "application/pdf",
+    multiple: false,
+    options: [],
+  },
   "image-to-pdf": {
     category: "Convert",
     title: "JPG/PNG to PDF",
     summary: "Convert JPG and PNG images into a single PDF file.",
     accept: "image/jpeg,image/png",
+    multiple: true,
+    options: [],
+  },
+  "png-to-pdf": {
+    category: "Convert",
+    title: "PNG to PDF",
+    summary: "Convert PNG images into a single PDF file.",
+    accept: "image/png",
     multiple: true,
     options: [],
   },
@@ -115,6 +131,14 @@ const toolConfig = {
     category: "Edit",
     title: "Repair PDF",
     summary: "Try to load and re-save a readable PDF to fix minor structure issues.",
+    accept: "application/pdf",
+    multiple: false,
+    options: [],
+  },
+  compress: {
+    category: "Edit",
+    title: "Compress PDF",
+    summary: "Rewrite a PDF with object streams enabled. Compression results depend on the source file.",
     accept: "application/pdf",
     multiple: false,
     options: [],
@@ -300,6 +324,27 @@ async function pdfToJpg(file) {
   return [downloadItem(blob, safeName(file.name, "-jpg.zip"))];
 }
 
+async function pdfToPng(file) {
+  const data = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data }).promise;
+  const zip = new JSZip();
+
+  for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+    const page = await pdf.getPage(pageNumber);
+    const viewport = page.getViewport({ scale: 2 });
+    const canvas = document.createElement("canvas");
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const context = canvas.getContext("2d", { alpha: false });
+    await page.render({ canvasContext: context, viewport }).promise;
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+    zip.file(`page-${String(pageNumber).padStart(3, "0")}.png`, blob);
+  }
+
+  const blob = await zip.generateAsync({ type: "blob" });
+  return [downloadItem(blob, safeName(file.name, "-png.zip"))];
+}
+
 async function imageToPdf(files) {
   const doc = await PDFLib.PDFDocument.create();
   for (const file of files) {
@@ -407,7 +452,9 @@ const runners = {
   rotate: () => rotatePdf(selectedFiles[0]),
   reverse: () => reversePdf(selectedFiles[0]),
   "pdf-to-jpg": () => pdfToJpg(selectedFiles[0]),
+  "pdf-to-png": () => pdfToPng(selectedFiles[0]),
   "image-to-pdf": () => imageToPdf(selectedFiles),
+  "png-to-pdf": () => imageToPdf(selectedFiles),
   "extract-text": () => extractText(selectedFiles[0]),
   watermark: () => addWatermark(selectedFiles[0]),
   "page-numbers": () => addPageNumbers(selectedFiles[0]),
@@ -415,6 +462,7 @@ const runners = {
   flatten: () => flattenForms(selectedFiles[0]),
   optimize: () => rewritePdf(selectedFiles[0], "-optimized.pdf"),
   repair: () => rewritePdf(selectedFiles[0], "-repaired.pdf"),
+  compress: () => rewritePdf(selectedFiles[0], "-compressed.pdf"),
 };
 
 function configureTool(toolId) {
@@ -424,7 +472,7 @@ function configureTool(toolId) {
   $("#toolTitle").textContent = config.title;
   $("#toolSummary").textContent = config.summary;
   $("#dropTitle").textContent = config.multiple ? "Choose files" : "Choose a file";
-  $("#dropSubtitle").textContent = config.accept.includes("image") ? "JPG or PNG images" : "PDF files only";
+  $("#dropSubtitle").textContent = config.accept === "image/png" ? "PNG images" : config.accept.includes("image") ? "JPG or PNG images" : "PDF files only";
 
   const input = $("#fileInput");
   input.accept = config.accept;

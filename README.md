@@ -24,7 +24,9 @@ BayMaxHome PDF Tools is a static GitHub Pages website for merging, splitting, or
 | Tool | What it does |
 | --- | --- |
 | [PDF to JPG](https://liaopengdong.github.io/pdf-tools/pdf-to-jpg/) | Convert PDF pages into JPG images and download them as a ZIP file. |
+| [PDF to PNG](https://liaopengdong.github.io/pdf-tools/pdf-to-png/) | Convert PDF pages into PNG images and download them as a ZIP file. |
 | [JPG to PDF](https://liaopengdong.github.io/pdf-tools/jpg-to-pdf/) | Convert JPG or PNG images into a PDF document. |
+| [PNG to PDF](https://liaopengdong.github.io/pdf-tools/png-to-pdf/) | Convert PNG images into a PDF document. |
 | [PDF to Text](https://liaopengdong.github.io/pdf-tools/pdf-to-text/) | Extract readable text from a PDF file when text data is available. |
 
 ### Edit PDF
@@ -34,6 +36,7 @@ BayMaxHome PDF Tools is a static GitHub Pages website for merging, splitting, or
 | [Add Watermark](https://liaopengdong.github.io/pdf-tools/watermark-pdf/) | Add a text watermark to each PDF page. |
 | [Add Page Numbers](https://liaopengdong.github.io/pdf-tools/add-page-numbers/) | Add page numbers to PDF pages. |
 | [Edit PDF Metadata](https://liaopengdong.github.io/pdf-tools/edit-pdf-metadata/) | Update title, author, subject, and keyword metadata. |
+| [Compress PDF](https://liaopengdong.github.io/pdf-tools/compress-pdf/) | Rewrite a PDF with object streams enabled; size reduction depends on the source file. |
 
 The homepage also includes additional browser-side utilities such as flattening PDF forms, rewriting PDF files for basic optimization, and repairing simple PDF structure issues.
 
@@ -68,7 +71,9 @@ Users should still avoid processing highly sensitive documents on any public web
 ├── merge-pdf/
 ├── split-pdf/
 ├── pdf-to-jpg/
+├── pdf-to-png/
 ├── jpg-to-pdf/
+├── png-to-pdf/
 ├── rotate-pdf/
 ├── watermark-pdf/
 ├── extract-pages/
@@ -77,6 +82,7 @@ Users should still avoid processing highly sensitive documents on any public web
 ├── pdf-to-text/
 ├── add-page-numbers/
 ├── edit-pdf-metadata/
+├── compress-pdf/
 ├── organize-pdf/
 ├── convert-pdf/
 ├── edit-pdf/

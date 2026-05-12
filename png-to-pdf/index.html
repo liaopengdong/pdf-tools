@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PNG to PDF Converter | Create PDF from PNG Images</title>
+  <meta name="description" content="Convert PNG images into a single PDF file in your browser.">
+  <link rel="canonical" href="https://liaopengdong.github.io/pdf-tools/png-to-pdf/">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/vendor/pdf.min.js"></script>
+  <script src="../assets/vendor/pdf-lib.min.js"></script>
+  <script src="../assets/vendor/jszip.min.js"></script>
+  <script defer src="../assets/pdf-tools.js"></script>
+</head>
+<body data-default-tool="png-to-pdf">
+  <header class="topbar"><a class="brand" href="../">BayMaxHome PDF</a><nav class="topnav"><a href="../">All tools</a><a href="../privacy-policy/">Privacy</a><a href="../contact/">Contact</a></nav></header>
+  <main>
+    <section class="workspace" id="workspace">
+      <aside class="tool-rail" aria-label="PDF tools"><div class="rail-head"><span>Convert</span><strong>PNG to PDF</strong></div><button class="tool-tab active" type="button" data-tool="png-to-pdf">PNG to PDF</button></aside>
+      <section class="tool-panel" aria-live="polite">
+        <div class="panel-head"><div><p class="eyebrow" id="toolCategory">Convert</p><h1 id="toolTitle">PNG to PDF</h1><p class="lead" id="toolSummary">Convert PNG images into a single PDF file.</p></div><div class="privacy-chip">Local browser processing</div></div>
+        <div class="drop-zone" id="dropZone"><input id="fileInput" type="file" multiple accept="image/png"><div><strong id="dropTitle">Choose files</strong><span id="dropSubtitle">PNG images</span></div></div>
+        <div class="file-list" id="fileList"></div><div class="options-grid"></div>
+        <div class="action-row"><button class="primary-action" id="runButton" type="button">Process PDF</button><button class="secondary-action" id="clearButton" type="button">Clear files</button></div>
+        <div class="status-line" id="statusLine">Ready.</div><div class="result-list" id="resultList"></div>
+      </section>
+    </section>
+    <section class="tool-content">
+      <article class="content-panel"><h2>Create a PDF from PNG images</h2><p>This tool turns PNG images into one PDF file. It is useful for screenshots, scanned pages, design exports, diagrams, or image-based document submissions.</p><h3>Best uses</h3><ul><li>Combine PNG screenshots into a PDF.</li><li>Turn scanned PNG pages into a document.</li><li>Create a shareable PDF from image exports.</li></ul><h3>FAQ</h3><p><strong>Does image order matter?</strong> Images are added in the selected order.</p><p><strong>Can I use JPG files?</strong> Use the JPG/PNG to PDF tool if you want to mix JPG and PNG images.</p></article>
+      <aside class="content-panel"><h2>Related tools</h2><div class="related-list"><a href="../jpg-to-pdf/">JPG/PNG to PDF</a><a href="../pdf-to-png/">PDF to PNG</a><a href="../merge-pdf/">Merge PDF</a></div></aside>
+    </section>
+  </main>
+  <footer class="site-footer"><div>&copy; <span data-year></span> BayMaxHome PDF</div><nav><a href="../privacy-policy/">Privacy</a><a href="../terms/">Terms</a></nav></footer>
+</body>
+</html>
