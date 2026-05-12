@@ -39,6 +39,8 @@
         <button class="tool-tab" type="button" data-tool="delete">Delete pages</button>
         <button class="tool-tab" type="button" data-tool="rotate">Rotate PDF</button>
         <button class="tool-tab" type="button" data-tool="reverse">Reverse pages</button>
+        <button class="tool-tab" type="button" data-tool="duplicate">Duplicate pages</button>
+        <button class="tool-tab" type="button" data-tool="blank-page">Add blank page</button>
 
         <div class="tool-group-label">Convert</div>
         <button class="tool-tab" type="button" data-tool="pdf-to-jpg">PDF to JPG</button>
@@ -46,6 +48,8 @@
         <button class="tool-tab" type="button" data-tool="image-to-pdf">JPG/PNG to PDF</button>
         <button class="tool-tab" type="button" data-tool="png-to-pdf">PNG to PDF</button>
         <button class="tool-tab" type="button" data-tool="extract-text">PDF to text</button>
+        <button class="tool-tab" type="button" data-tool="page-count">PDF page count</button>
+        <button class="tool-tab" type="button" data-tool="page-size">PDF page size</button>
 
         <div class="tool-group-label">Edit</div>
         <button class="tool-tab" type="button" data-tool="watermark">Add watermark</button>
@@ -114,6 +118,18 @@
             <span>JPG quality</span>
             <input id="jpegQuality" type="range" value="0.9" min="0.3" max="1" step="0.05">
           </label>
+          <label class="option-field" data-option="blank-page">
+            <span>Blank page size</span>
+            <select id="blankPageSize">
+              <option value="same">Same as first page</option>
+              <option value="a4">A4</option>
+              <option value="letter">Letter</option>
+            </select>
+          </label>
+          <label class="option-field" data-option="blank-page">
+            <span>Blank page count</span>
+            <input id="blankPageCount" type="number" value="1" min="1" max="20">
+          </label>
         </div>
 
         <div class="action-row">
@@ -138,15 +154,22 @@
         <a class="tool-card" href="delete-pages/"><strong>Delete pages</strong><span>Remove selected ranges</span></a>
         <a class="tool-card" href="rotate-pdf/"><strong>Rotate PDF</strong><span>Rotate all or selected pages</span></a>
         <a class="tool-card" href="reverse-pdf/"><strong>Reverse PDF</strong><span>Reverse page order</span></a>
+        <a class="tool-card" href="duplicate-pages/"><strong>Duplicate pages</strong><span>Duplicate selected pages</span></a>
+        <a class="tool-card" href="add-blank-page/"><strong>Add blank page</strong><span>Append blank pages</span></a>
         <a class="tool-card" href="pdf-to-jpg/"><strong>PDF to JPG</strong><span>Export page images</span></a>
         <a class="tool-card" href="pdf-to-png/"><strong>PDF to PNG</strong><span>Export lossless page images</span></a>
         <a class="tool-card" href="jpg-to-pdf/"><strong>JPG/PNG to PDF</strong><span>Create a PDF from images</span></a>
         <a class="tool-card" href="png-to-pdf/"><strong>PNG to PDF</strong><span>Create a PDF from PNG images</span></a>
         <a class="tool-card" href="pdf-to-text/"><strong>PDF to text</strong><span>Extract selectable text</span></a>
+        <a class="tool-card" href="pdf-page-count/"><strong>PDF page count</strong><span>Count pages in a PDF</span></a>
+        <a class="tool-card" href="pdf-page-size/"><strong>PDF page size</strong><span>Check page dimensions</span></a>
         <a class="tool-card" href="watermark-pdf/"><strong>Watermark PDF</strong><span>Add diagonal text</span></a>
         <a class="tool-card" href="add-page-numbers/"><strong>Add page numbers</strong><span>Number every page</span></a>
         <a class="tool-card" href="edit-pdf-metadata/"><strong>Edit metadata</strong><span>Set title and author</span></a>
         <a class="tool-card" href="compress-pdf/"><strong>Compress PDF</strong><span>Rewrite and reduce eligible files</span></a>
+        <a class="tool-card" href="flatten-pdf/"><strong>Flatten PDF forms</strong><span>Flatten fillable fields</span></a>
+        <a class="tool-card" href="optimize-pdf/"><strong>Optimize PDF</strong><span>Rewrite PDF structure</span></a>
+        <a class="tool-card" href="repair-pdf/"><strong>Repair PDF</strong><span>Re-save readable files</span></a>
       </div>
     </section>
 

@@ -18,6 +18,8 @@ BayMaxHome PDF Tools is a static GitHub Pages website for merging, splitting, or
 | [Delete Pages](https://liaopengdong.github.io/pdf-tools/delete-pages/) | Remove unwanted pages from a PDF. |
 | [Rotate PDF](https://liaopengdong.github.io/pdf-tools/rotate-pdf/) | Rotate PDF pages by 90, 180, or 270 degrees. |
 | [Reverse PDF Pages](https://liaopengdong.github.io/pdf-tools/reverse-pdf/) | Reverse the page order of a PDF file. |
+| [Duplicate Pages](https://liaopengdong.github.io/pdf-tools/duplicate-pages/) | Duplicate selected pages directly after the original pages. |
+| [Add Blank Page](https://liaopengdong.github.io/pdf-tools/add-blank-page/) | Append one or more blank pages to a PDF. |
 
 ### Convert PDF
 
@@ -28,6 +30,8 @@ BayMaxHome PDF Tools is a static GitHub Pages website for merging, splitting, or
 | [JPG to PDF](https://liaopengdong.github.io/pdf-tools/jpg-to-pdf/) | Convert JPG or PNG images into a PDF document. |
 | [PNG to PDF](https://liaopengdong.github.io/pdf-tools/png-to-pdf/) | Convert PNG images into a PDF document. |
 | [PDF to Text](https://liaopengdong.github.io/pdf-tools/pdf-to-text/) | Extract readable text from a PDF file when text data is available. |
+| [PDF Page Count](https://liaopengdong.github.io/pdf-tools/pdf-page-count/) | Count pages in a PDF and download a simple report. |
+| [PDF Page Size](https://liaopengdong.github.io/pdf-tools/pdf-page-size/) | Check page dimensions and download a simple report. |
 
 ### Edit PDF
 
@@ -37,6 +41,9 @@ BayMaxHome PDF Tools is a static GitHub Pages website for merging, splitting, or
 | [Add Page Numbers](https://liaopengdong.github.io/pdf-tools/add-page-numbers/) | Add page numbers to PDF pages. |
 | [Edit PDF Metadata](https://liaopengdong.github.io/pdf-tools/edit-pdf-metadata/) | Update title, author, subject, and keyword metadata. |
 | [Compress PDF](https://liaopengdong.github.io/pdf-tools/compress-pdf/) | Rewrite a PDF with object streams enabled; size reduction depends on the source file. |
+| [Flatten PDF](https://liaopengdong.github.io/pdf-tools/flatten-pdf/) | Flatten supported fillable form fields into page content. |
+| [Optimize PDF](https://liaopengdong.github.io/pdf-tools/optimize-pdf/) | Re-save a PDF with object streams enabled. |
+| [Repair PDF](https://liaopengdong.github.io/pdf-tools/repair-pdf/) | Try to re-save a readable PDF to fix minor structure issues. |
 
 The homepage also includes additional browser-side utilities such as flattening PDF forms, rewriting PDF files for basic optimization, and repairing simple PDF structure issues.
 
@@ -79,10 +86,17 @@ Users should still avoid processing highly sensitive documents on any public web
 ├── extract-pages/
 ├── delete-pages/
 ├── reverse-pdf/
+├── duplicate-pages/
+├── add-blank-page/
 ├── pdf-to-text/
+├── pdf-page-count/
+├── pdf-page-size/
 ├── add-page-numbers/
 ├── edit-pdf-metadata/
 ├── compress-pdf/
+├── flatten-pdf/
+├── optimize-pdf/
+├── repair-pdf/
 ├── organize-pdf/
 ├── convert-pdf/
 ├── edit-pdf/

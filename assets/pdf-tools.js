@@ -47,6 +47,22 @@ const toolConfig = {
     multiple: false,
     options: [],
   },
+  duplicate: {
+    category: "Organize",
+    title: "Duplicate pages",
+    summary: "Duplicate selected pages directly after their original pages.",
+    accept: "application/pdf",
+    multiple: false,
+    options: ["range"],
+  },
+  "blank-page": {
+    category: "Organize",
+    title: "Add blank page",
+    summary: "Append one or more blank pages to a PDF file.",
+    accept: "application/pdf",
+    multiple: false,
+    options: ["blank-page"],
+  },
   "pdf-to-jpg": {
     category: "Convert",
     title: "PDF to JPG",
@@ -83,6 +99,22 @@ const toolConfig = {
     category: "Convert",
     title: "PDF to text",
     summary: "Extract selectable text from a PDF into a plain text file.",
+    accept: "application/pdf",
+    multiple: false,
+    options: [],
+  },
+  "page-count": {
+    category: "Inspect",
+    title: "PDF page count",
+    summary: "Count PDF pages and download a simple text report.",
+    accept: "application/pdf",
+    multiple: false,
+    options: [],
+  },
+  "page-size": {
+    category: "Inspect",
+    title: "PDF page size",
+    summary: "Check the size of every page and download a text report.",
     accept: "application/pdf",
     multiple: false,
     options: [],
@@ -302,6 +334,42 @@ async function reversePdf(file) {
   return [downloadItem(await savePdf(output), safeName(file.name, "-reversed.pdf"))];
 }
 
+async function duplicatePages(file) {
+  const source = await loadPdf(file);
+  const selected = new Set(parseRanges($("#pageRange").value, source.getPageCount()));
+  if (!selected.size) throw new Error("No valid pages were selected.");
+  const output = await PDFLib.PDFDocument.create();
+
+  for (let index = 0; index < source.getPageCount(); index += 1) {
+    const [page] = await output.copyPages(source, [index]);
+    output.addPage(page);
+    if (selected.has(index)) {
+      const [copy] = await output.copyPages(source, [index]);
+      output.addPage(copy);
+    }
+  }
+
+  return [downloadItem(await savePdf(output), safeName(file.name, "-duplicated-pages.pdf"))];
+}
+
+function blankPageSize(doc) {
+  const size = $("#blankPageSize")?.value || "same";
+  if (size === "letter") return [612, 792];
+  if (size === "a4") return [595.28, 841.89];
+  const first = doc.getPage(0).getSize();
+  return [first.width, first.height];
+}
+
+async function addBlankPage(file) {
+  const doc = await loadPdf(file);
+  const count = Math.min(Math.max(Number($("#blankPageCount")?.value || 1), 1), 20);
+  const size = blankPageSize(doc);
+  for (let index = 0; index < count; index += 1) {
+    doc.addPage(size);
+  }
+  return [downloadItem(await savePdf(doc), safeName(file.name, "-blank-pages.pdf"))];
+}
+
 async function pdfToJpg(file) {
   const data = await file.arrayBuffer();
   const pdf = await pdfjsLib.getDocument({ data }).promise;
@@ -371,6 +439,28 @@ async function extractText(file) {
 
   const blob = new Blob([chunks.join("\n")], { type: "text/plain;charset=utf-8" });
   return [downloadItem(blob, safeName(file.name, ".txt"))];
+}
+
+async function pageCountReport(file) {
+  const doc = await loadPdf(file);
+  const lines = [
+    `File: ${file.name}`,
+    `Pages: ${doc.getPageCount()}`,
+    `File size: ${bytesLabel(file.size)}`,
+  ];
+  const blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
+  return [downloadItem(blob, safeName(file.name, "-page-count.txt"))];
+}
+
+async function pageSizeReport(file) {
+  const doc = await loadPdf(file);
+  const lines = [`File: ${file.name}`, `Pages: ${doc.getPageCount()}`, ""];
+  doc.getPages().forEach((page, index) => {
+    const { width, height } = page.getSize();
+    lines.push(`Page ${index + 1}: ${width.toFixed(2)} x ${height.toFixed(2)} pt`);
+  });
+  const blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
+  return [downloadItem(blob, safeName(file.name, "-page-sizes.txt"))];
 }
 
 async function addWatermark(file) {
@@ -451,11 +541,15 @@ const runners = {
   delete: () => deletePages(selectedFiles[0]),
   rotate: () => rotatePdf(selectedFiles[0]),
   reverse: () => reversePdf(selectedFiles[0]),
+  duplicate: () => duplicatePages(selectedFiles[0]),
+  "blank-page": () => addBlankPage(selectedFiles[0]),
   "pdf-to-jpg": () => pdfToJpg(selectedFiles[0]),
   "pdf-to-png": () => pdfToPng(selectedFiles[0]),
   "image-to-pdf": () => imageToPdf(selectedFiles),
   "png-to-pdf": () => imageToPdf(selectedFiles),
   "extract-text": () => extractText(selectedFiles[0]),
+  "page-count": () => pageCountReport(selectedFiles[0]),
+  "page-size": () => pageSizeReport(selectedFiles[0]),
   watermark: () => addWatermark(selectedFiles[0]),
   "page-numbers": () => addPageNumbers(selectedFiles[0]),
   metadata: () => editMetadata(selectedFiles[0]),
